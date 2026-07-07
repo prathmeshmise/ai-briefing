@@ -17,7 +17,7 @@
 set -euo pipefail
 
 REPO_DIR="$HOME/Documents/Claude/AI-Briefing"
-PAGES_URL="https://YOUR_GITHUB_USERNAME.github.io/ai-briefing/"   # <-- EDIT
+PAGES_URL="https://prathmeshmise.github.io/ai-briefing/"   # <-- EDIT
 
 cd "$REPO_DIR"
 
