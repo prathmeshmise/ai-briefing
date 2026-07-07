@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+*.log
+.slack_webhook
+.git-broken-remove-me
+finish-setup.sh

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Runs publish.sh every day at 19:15 local time (14 min after the Cowork
+  briefing task at 19:01), publishing to GitHub Pages and posting to Slack.
+
+  Install:
+    cp com.aibriefing.publish.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.aibriefing.publish.plist
+  Run once now to test:
+    launchctl start com.aibriefing.publish
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/com.aibriefing.publish.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.aibriefing.publish</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/prathmesh/Documents/Claude/AI-Briefing/publish.sh</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>19</integer>
+    <key>Minute</key>
+    <integer>15</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/Users/prathmesh/Documents/Claude/AI-Briefing/publish.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/prathmesh/Documents/Claude/AI-Briefing/publish.log</string>
+</dict>
+</plist>
