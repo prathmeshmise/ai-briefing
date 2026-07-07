@@ -4,3 +4,4 @@ Thumbs.db
 .slack_webhook
 .git-broken-remove-me
 finish-setup.sh
+.claude/
