@@ -9,7 +9,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script src="briefings-data.js"></script>
+<script>
+  // Load the data with a cache-busting query so the browser always fetches
+  // today's briefing instead of a copy cached before the evening publish.
+  document.write('<script src="briefings-data.js?v=' + Date.now() + '"><\/script>');
+</script>
 <style>
   :root {
     --bg: #f6f2ea;
