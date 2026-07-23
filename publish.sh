@@ -28,13 +28,26 @@ fi
 SLACK_WEBHOOK_URL="${SLACK_WEBHOOK_URL:-}"
 
 # --- 1) publish to GitHub Pages (only if something changed) ---
+# Clean up a stale lock left by a crashed git process (older than 5 min).
+if [[ -f .git/index.lock ]] && [[ -n "$(find .git/index.lock -mmin +5)" ]]; then
+  rm -f .git/index.lock
+  echo "$(date '+%F %T') removed stale .git/index.lock"
+fi
+
 git add -A
 if git diff --cached --quiet; then
-  echo "$(date '+%F %T') no changes to publish"
+  echo "$(date '+%F %T') no new changes to commit"
 else
   git commit -m "Briefing $(TZ=Asia/Kolkata date +%F)" >/dev/null
+fi
+
+# Push if local main is ahead of origin (covers commits made earlier that
+# failed to push, not just the one made above).
+if [[ -n "$(git log origin/main..main --oneline 2>/dev/null)" ]]; then
   git push origin main
   echo "$(date '+%F %T') pushed to GitHub Pages"
+else
+  echo "$(date '+%F %T') nothing to push"
 fi
 
 # --- 2) build the Slack message from today's top-of-mind line ---
